@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.Actor;
 import org.hamcrest.Matchers;
 import questions.ResponseCode;
 import questions.ResponseToken;
+import questions.TokenValidation;
 import tasks.PostGenerateToken;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -50,6 +51,14 @@ public class StepDefinitionsPOSTToken extends UIInteractions {
     @And("El token de {actor} obtiene de respuesta el codigo del token")
     public void elTokenDeObtieneDeRespuestaElCodigoDelToken(Actor actor) {
         actor.should(
-                seeThat(ResponseToken.get(), Matchers.not(Matchers.emptyString())));
+                seeThat(ResponseToken.get(), Matchers.not(Matchers.emptyString()))
+        );
+    }
+
+    @And("El token de {actor} obtiene de respuesta el {string} del esquema")
+    public void elTokenDeObtieneDeRespuestaElDelEsquema(Actor actor, String schema) {
+        actor.should(
+                seeThat(TokenValidation.theTokenSchemaIs(schema))
+        );
     }
 }

@@ -1,0 +1,69 @@
+{"Usuario": {
+  "exclusiveMaximum": false,
+  "exclusiveMinimum": false,
+  "minLength": 0,
+  "uniqueItems": false,
+  "maxProperties": 0,
+  "minProperties": 0,
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "roles": {
+      "exclusiveMaximum": false,
+      "exclusiveMinimum": false,
+      "minLength": 0,
+      "uniqueItems": false,
+      "maxProperties": 0,
+      "minProperties": 0,
+      "type": "array",
+      "nullable": false,
+      "readOnly": false,
+      "writeOnly": false,
+      "example": "[\"user\"]",
+      "deprecated": false,
+      "items": {
+        "type": "string"
+      }
+    },
+    "usuario": {
+      "exclusiveMaximum": false,
+      "exclusiveMinimum": false,
+      "minLength": 0,
+      "uniqueItems": false,
+      "maxProperties": 0,
+      "minProperties": 0,
+      "type": "string",
+      "nullable": false,
+      "readOnly": false,
+      "writeOnly": false,
+      "example": "pedro",
+      "deprecated": false
+    },
+    "clave": {
+      "exclusiveMaximum": false,
+      "exclusiveMinimum": false,
+      "minLength": 0,
+      "uniqueItems": false,
+      "maxProperties": 0,
+      "minProperties": 0,
+      "type": "string",
+      "nullable": false,
+      "readOnly": false,
+      "writeOnly": false,
+      "example": "12345",
+      "deprecated": false
+    }
+  },
+  "nullable": false,
+  "readOnly": false,
+  "writeOnly": false,
+  "example": "{\"usuario\":\"pedro\",\"clave\":\"12345\",\"roles\":[\"user\"]}",
+  "deprecated": false
+},
+  "required": [
+    "clave",
+    "usuario",
+    "roles"
+  ]}

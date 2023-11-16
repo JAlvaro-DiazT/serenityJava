@@ -1,0 +1,49 @@
+{
+  "Errores": {
+    "exclusiveMaximum": false,
+    "exclusiveMinimum": false,
+    "minLength": 0,
+    "uniqueItems": false,
+    "maxProperties": 0,
+    "minProperties": 0,
+    "type": "array",
+    "nullable": false,
+    "readOnly": false,
+    "writeOnly": false,
+    "example": "[{\"error\":\"Se produjo un error al procesar la solicitud\"}]",
+    "deprecated": false,
+    "items": {
+      "exclusiveMaximum": false,
+      "exclusiveMinimum": false,
+      "minLength": 0,
+      "uniqueItems": false,
+      "maxProperties": 0,
+      "minProperties": 0,
+      "type": "object",
+      "properties": {
+        "error": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "string",
+          "description": "Descripción del error ocurrido",
+          "nullable": false,
+          "readOnly": false,
+          "writeOnly": false,
+          "deprecated": false
+        }
+      },
+      "nullable": false,
+      "readOnly": false,
+      "writeOnly": false,
+      "example": "{\"error\":\"Se produjo un error al procesar la solicitud\"}",
+      "deprecated": false
+    }
+  },
+  "required": [
+    "error"
+  ]
+}
