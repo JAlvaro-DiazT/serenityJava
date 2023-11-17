@@ -2,7 +2,7 @@ Feature: Eliminar un usuario registrado
 
   Scenario: Eliminar un usuario exitosamente
     Given El admin esta autenticado en el sistema
-    And El admin registra un usuario temporal
+    And El admin registra un usuario
     When El admin elimina un usuario
     Then El admin deberia recibir un código de estado 204
 
@@ -14,7 +14,7 @@ Feature: Eliminar un usuario registrado
 
   Scenario: Eliminar un usuario, sin embargo, no se me permite realizar dicha operación.
     Given El admin autenticado no tiene permisos
-    And El admin registra un usuario temporal
+    And El admin registra un usuario
     When El admin elimina un usuario
     Then El admin deberia recibir un código de estado 403
     And El admin obtiene el formato de respuesta "error" del esquema

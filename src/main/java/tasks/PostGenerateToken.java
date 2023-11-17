@@ -9,6 +9,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 
+import static util.Url.getBaseUrl;
+
 public class PostGenerateToken implements Task {
     private final GenerateTokenRecord generateTokenRecord;
 
@@ -26,7 +28,7 @@ public class PostGenerateToken implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(getBaseUrl()));
 
         actor.attemptsTo(
                 Post.to("/tokens")

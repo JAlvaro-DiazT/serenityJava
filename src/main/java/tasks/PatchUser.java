@@ -8,6 +8,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Patch;
 
+import static util.Url.getBaseUrl;
+
 public class PatchUser implements Task {
     private final PatchUserRecord patchUserRecord;
     private final String username;
@@ -28,7 +30,7 @@ public class PatchUser implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(getBaseUrl()));
 
         actor.attemptsTo(
                 Patch.to("/usuarios/"+username)

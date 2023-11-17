@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.annotations.Shared;
 import net.serenitybdd.core.steps.UIInteractions;
 import net.serenitybdd.screenplay.Actor;
 import org.hamcrest.Matchers;
@@ -12,32 +13,38 @@ import questions.ResponseCode;
 import questions.ResponseToken;
 import questions.TokenValidation;
 import tasks.PostGenerateToken;
+import util.DataProvider;
+import util.DataShared;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class StepDefinitionsPOSTToken extends UIInteractions {
-    private GenerateTokenRecord generateTokenRecord;
+
+    @Shared
+    private DataShared dataShared;
+    @Shared
+    private DataProvider dataProvider;
 
     @Given("un usuario registrado desea acceder al sistema")
     public void un_usuario_registrado_desea_acceder_al_sistema() {
-        generateTokenRecord = new GenerateTokenRecord("admin", "admin");
+        dataShared.credenciales = dataProvider.getAdminCredential();
     }
 
     @Given("un usuario registrado diligencia datos incompletos")
     public void unUsuarioRegistradoDiligenciaDatosIncompletos() {
-        generateTokenRecord = new GenerateTokenRecord("", "diaz");
+        dataShared.credenciales = new GenerateTokenRecord("", "diaz");
     }
 
     @Given("un usuario registrado diligencia datos incorrectos")
     public void unUsuarioRegistradoDiligenciaDatosIncorrectos() {
-        generateTokenRecord = new GenerateTokenRecord("Alvaro", "di");
+        dataShared.credenciales = new GenerateTokenRecord("Alvaro", "di");
     }
 
     @When("{actor} genera un token")
     public void genere_un_token(Actor actor) {
         actor.attemptsTo(
-                PostGenerateToken.withInfo(generateTokenRecord)
+                PostGenerateToken.withInfo(dataShared.credenciales)
         );
     }
     @Then("{actor} deberia obtener un codigo de estado {int}")

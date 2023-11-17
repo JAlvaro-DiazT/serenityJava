@@ -9,34 +9,33 @@ import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Patch;
 import net.serenitybdd.screenplay.rest.interactions.Put;
 
-public class PutUser implements Task {
-    private final PatchUserRecord patchUserRecord;
-    private final String username;
+import static util.Url.getBaseUrl;
 
+public class PutUser<T> implements Task {
+    private final String currentUser;
+    private final T user;
 
-
-    public PutUser(PatchUserRecord patchUserRecord, String username) {
-        this.username = username;
-        this.patchUserRecord = patchUserRecord;
+    public PutUser(String currentUser, T user) {
+        this.user = user;
+        this.currentUser = currentUser;
     }
 
-    public static PutUser withInfo(PatchUserRecord patchUserRecord, String username) {
+    public static <T> PutUser<T> withInfo(String currentUser, T user) {
 
-        return new PutUser(patchUserRecord, username);
+        return new PutUser<T>(currentUser, user);
     }
-
 
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(getBaseUrl()));
 
         actor.attemptsTo(
-                Put.to("/usuarios/"+username)
+                Put.to("/usuarios/"+currentUser)
                         .with(request -> request.
                                 headers("Authorization",actor.gaveAsThe("token"))
                                 .contentType(ContentType.JSON)
-                                .body(patchUserRecord, ObjectMapperType.GSON)
+                                .body(user, ObjectMapperType.GSON)
                                 .log().all())
 
         );

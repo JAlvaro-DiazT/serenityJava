@@ -2,14 +2,14 @@ Feature: Actualizacion parcial de un usuario en el Sistema
 
   Scenario: Actualizo parcialmente un usuario en el sistema
     Given El admin esta autenticado en el sistema
-    And El admin registra un nuevo usuario
+    And El admin registra un usuario
     When El admin solicita actualizar la clave temporalmente de un usuario
     Then El admin deberia recibir un código de estado 200
     And El admin obtiene el formato de respuesta "user" del esquema
 
   Scenario: Actualizo parcialmente un usuario con datos incompletos
     Given El admin esta autenticado en el sistema
-    And El admin registra un nuevo usuario
+    And El admin registra un usuario
     When El admin solicita actualizar la clave temporalmente con datos imcompletos
     Then El admin deberia recibir un código de estado 400
     And El admin obtiene el formato de respuesta "error" del esquema
@@ -22,7 +22,7 @@ Feature: Actualizacion parcial de un usuario en el Sistema
 
   Scenario: Intento actualizar un usuario, sin embargo, no se me permite realizar dicha operación.
     Given El admin autenticado no tiene permisos
-    And El admin registra un nuevo usuario
+    And El admin registra un usuario
     When El admin solicita actualizar la clave temporalmente de un usuario
     Then El admin deberia recibir un código de estado 403
     And El admin obtiene el formato de respuesta "error" del esquema

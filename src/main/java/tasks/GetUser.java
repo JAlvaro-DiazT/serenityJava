@@ -5,6 +5,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Get;
 
+import static util.Url.getBaseUrl;
+
 public class GetUser implements Task {
     private final String usuario;
     public GetUser(String usuario) {
@@ -18,7 +20,7 @@ public class GetUser implements Task {
     }
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(getBaseUrl()));
 
         actor.attemptsTo(
                 Get.resource("/usuarios/"+usuario)

@@ -5,41 +5,38 @@ import dto.PatchUserRecord;
 import dto.RegisterUserRecord;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import net.serenitybdd.annotations.Shared;
 import net.serenitybdd.screenplay.Actor;
 import tasks.PatchUser;
 import tasks.PostRegisterUser;
+import util.DataProvider;
+import util.DataShared;
 
 import java.util.List;
 
 
 public class StepDefinitionsPATCHUser {
-    private RegisterUserRecord registerUserRecord;
-    Faker faker = new Faker();
-    String user = faker.name().username();
-    String password = faker.internet().password();
-
-    String newPassword = faker.internet().password();
-    @And("{actor} registra un nuevo usuario")
-    public void elAdminRegistraUnNuevoUsuario(Actor actor) {
-        registerUserRecord = new RegisterUserRecord(user, password, List.of("user"));
-        actor.attemptsTo(
-                PostRegisterUser.withInfo(registerUserRecord)
-        );
-    }
+    @Shared
+    private DataShared dataShared;
+    @Shared
+    private DataProvider dataProvider;
 
     @When("{actor} solicita actualizar la clave temporalmente de un usuario")
     public void elAdminSolicitaActualizarLaClaveTemporalmenteDeUnUsuario(Actor actor) {
-        actor.attemptsTo(PatchUser.withInfo(new PatchUserRecord(password, newPassword, newPassword),user));
+        String newPassword = dataProvider.getPassword();
+        actor.attemptsTo(
+                PatchUser.withInfo(new PatchUserRecord(dataShared.usuario.clave(), newPassword, newPassword),dataShared.usuario.usuario()));
     }
-
 
     @When("{actor} solicita actualizar la clave temporalmente con datos imcompletos")
     public void elAdminSolicitaActualizarLaClaveTemporalmenteConDatosImcompletos(Actor actor) {
-        actor.attemptsTo(PatchUser.withInfo(new PatchUserRecord(password, "", newPassword),user));
+        String newPassword = dataProvider.getPassword();
+        actor.attemptsTo(PatchUser.withInfo(new PatchUserRecord(dataShared.usuario.clave(), "", newPassword),dataShared.usuario.usuario()));
     }
 
     @When("{actor} solicita actualizar usuario que no existe")
     public void elAdminSolicitaActualizarUsuarioQueNoExiste(Actor actor) {
-        actor.attemptsTo(PatchUser.withInfo(new PatchUserRecord(password, newPassword, newPassword),"camilo"));
+        String newPassword = dataProvider.getPassword();
+        actor.attemptsTo(PatchUser.withInfo(new PatchUserRecord(dataProvider.getPassword(), newPassword, newPassword), dataProvider.getUsuarioIncompleto().usuario()));
     }
 }

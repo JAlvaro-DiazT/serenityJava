@@ -1,13 +1,11 @@
 package tasks;
 
-import dto.PatchUserRecord;
-import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapperType;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Delete;
-import net.serenitybdd.screenplay.rest.interactions.Patch;
+
+import static util.Url.getBaseUrl;
 
 public class DeleteUser implements Task {
     private final String username;
@@ -27,7 +25,7 @@ public class DeleteUser implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(getBaseUrl()));
 
         actor.attemptsTo(
                 Delete.from("/usuarios/"+username)
