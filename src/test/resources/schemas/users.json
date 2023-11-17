@@ -1,0 +1,115 @@
+{
+  "Tokens": {
+    "exclusiveMaximum": false,
+    "exclusiveMinimum": false,
+    "minLength": 0,
+    "uniqueItems": false,
+    "maxProperties": 0,
+    "minProperties": 0,
+    "type": "array",
+    "items": {
+      "exclusiveMaximum": false,
+      "exclusiveMinimum": false,
+      "minLength": 0,
+      "uniqueItems": false,
+      "maxProperties": 0,
+      "minProperties": 0,
+      "type": "object",
+      "properties": {
+        "id": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "string",
+          "description": "Identificador UUID del token generado"
+        },
+        "token": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "string",
+          "description": "Token de seguridad generado para el usuario"
+        },
+        "roles": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "array",
+          "description": "Contiene el listado de roles del usuario",
+          "items": {
+            "type": "string"
+          }
+        },
+        "vigencia": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "object",
+          "description": "Contiene el momento en que el token perderá su validez"
+        },
+        "usuario": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "string",
+          "description": "Usuario para el que se genero el token"
+        },
+        "emisor": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "string",
+          "description": "Nombre de la entidad que emite el token"
+        },
+        "emision": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "object",
+          "description": "Contiene el momento en que el token fue emitido"
+        },
+        "propiedades": {
+          "exclusiveMaximum": false,
+          "exclusiveMinimum": false,
+          "minLength": 0,
+          "uniqueItems": false,
+          "maxProperties": 0,
+          "minProperties": 0,
+          "type": "object",
+          "description": "Conjunto de propiedades adicionales que se almacenan en el token"
+        }
+      },
+      "required": [
+        "propiedades",
+        "emision",
+        "emisor",
+        "usuario",
+        "vigencia",
+        "roles",
+        "token",
+        "id"
+      ]
+    }
+  }
+}
